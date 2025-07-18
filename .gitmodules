@@ -1,0 +1,3 @@
+[submodule "services/location"]
+	path = services/location
+	url = git@github.com:IshrakAdit/caresync-location-service.git
