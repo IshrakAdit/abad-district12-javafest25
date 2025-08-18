@@ -1,3 +1,6 @@
 [submodule "services/location"]
 	path = services/location
 	url = git@github.com:IshrakAdit/abad-location-service.git
+[submodule "services/diary-ai"]
+	path = services/diary-ai
+	url = git@github.com:IshrakAdit/abad-diary-ai.git

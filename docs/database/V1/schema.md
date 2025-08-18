@@ -23,7 +23,6 @@
 | full_name       | VARCHAR(150)  |                         |
 | phone_number    | VARCHAR(20)   |                         |
 | region          | VARCHAR(100)  |                         |
-| farm_size       | DECIMAL(10,2) | In acres/hectares       |
 | preferred_crops | TEXT          | JSON or CSV list        |
 | created_at      | TIMESTAMP     |                         |
 | updated_at      | TIMESTAMP     |                         |
