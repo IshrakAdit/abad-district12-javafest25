@@ -59,6 +59,22 @@ services:
     networks:
       - app-net
 
+  analyze-service:
+    build:
+      context: ./services/analyze/server
+    ports:
+      - "8088:8088"
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_ASSISTANT_DB: ${POSTGRES_ANALYTIC_DB}
+      FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
+    restart: unless-stopped
+    networks:
+      - app-net
+
   # diary-ai-service:
   #   build:
   #     context: ./services/diary-ai
@@ -83,6 +99,20 @@ services:
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
       HOST: ${AI_HOST:-0.0.0.0}
       PORT: ${ASST_AI_PORT:-8096}
+    restart: unless-stopped
+    networks:
+      - app-net
+
+  analytice-ai-service:
+    build:
+      context: ./services/analyze-ai
+    ports:
+      - "${ANALYTIC_AI_PORT:-8098}:${ANALYTIC_AI_PORT:-8098}"
+    environment:
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      HOST: ${AI_HOST:-0.0.0.0}
+      PORT: ${ANALYTIC_AI_PORT:-8098}
     restart: unless-stopped
     networks:
       - app-net
