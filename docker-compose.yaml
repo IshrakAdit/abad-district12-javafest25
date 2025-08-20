@@ -13,35 +13,35 @@ services:
     networks:
       - app-net
 
-  location-service:
-    build:
-      context: ./services/location/server
-    ports:
-      - "8082:8082"
-    depends_on:
-      - postgres
-    environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
-    restart: unless-stopped
-    networks:
-      - app-net
+  # location-service:
+  #   build:
+  #     context: ./services/location/server
+  #   ports:
+  #     - "8082:8082"
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  #     FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
+  #   restart: unless-stopped
+  #   networks:
+  #     - app-net
 
-  diary-service:
-    build:
-      context: ./services/diary/server
-    ports:
-      - "8085:8085"
-    depends_on:
-      - postgres
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DIARY_DB: ${POSTGRES_DIARY_DB}
-      FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
-    restart: unless-stopped
-    networks:
-      - app-net
+  # diary-service:
+  #   build:
+  #     context: ./services/diary/server
+  #   ports:
+  #     - "8085:8085"
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     POSTGRES_USER: ${POSTGRES_USER}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  #     POSTGRES_DIARY_DB: ${POSTGRES_DIARY_DB}
+  #     FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
+  #   restart: unless-stopped
+  #   networks:
+  #     - app-net
 
   asst-service:
     build:
@@ -59,19 +59,19 @@ services:
     networks:
       - app-net
 
-  diary-ai-service:
-    build:
-      context: ./services/diary-ai
-    ports:
-      - "${AI_PORT:-8095}:${AI_PORT:-8095}"
-    environment:
-      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
-      LOG_LEVEL: ${LOG_LEVEL:-INFO}
-      HOST: ${AI_HOST:-0.0.0.0}
-      PORT: ${AI_PORT:-8095}
-    restart: unless-stopped
-    networks:
-      - app-net
+  # diary-ai-service:
+  #   build:
+  #     context: ./services/diary-ai
+  #   ports:
+  #     - "${AI_PORT:-8095}:${AI_PORT:-8095}"
+  #   environment:
+  #     GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+  #     LOG_LEVEL: ${LOG_LEVEL:-INFO}
+  #     HOST: ${AI_HOST:-0.0.0.0}
+  #     PORT: ${AI_PORT:-8095}
+  #   restart: unless-stopped
+  #   networks:
+  #     - app-net
 
   asst-ai-service:
     build:
