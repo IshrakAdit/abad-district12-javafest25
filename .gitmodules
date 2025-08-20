@@ -7,3 +7,6 @@
 [submodule "services/diary"]
 	path = services/diary
 	url = git@github.com:IshrakAdit/abad-diary-service.git
+[submodule "services/assistant"]
+	path = services/assistant
+	url = git@github.com:IshrakAdit/abad-assistant-service.git
