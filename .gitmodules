@@ -13,3 +13,9 @@
 [submodule "services/assistant-ai"]
 	path = services/assistant-ai
 	url = git@github.com:IshrakAdit/abad-assistant-ai.git
+[submodule "services/analyze"]
+	path = services/analyze
+	url = git@github.com:IshrakAdit/abad-analytic-service.git
+[submodule "services/analyze-ai"]
+	path = services/analyze-ai
+	url = git@github.com:IshrakAdit/abad-analytic-ai.git
