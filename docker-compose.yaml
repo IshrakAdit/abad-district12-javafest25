@@ -13,19 +13,21 @@ services:
     networks:
       - app-net
 
-  # location-service:
-  #   build:
-  #     context: ./services/location/server
-  #   ports:
-  #     - "8082:8082"
-  #   depends_on:
-  #     - postgres
-  #   environment:
-  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-  #     FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
-  #   restart: unless-stopped
-  #   networks:
-  #     - app-net
+  location-service:
+    build:
+      context: ./services/location/server
+    ports:
+      - "8082:8082"
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_LOCATION_DB: ${POSTGRES_LOCATION_DB}
+      FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
+    restart: unless-stopped
+    networks:
+      - app-net
 
   # diary-service:
   #   build:
@@ -59,21 +61,21 @@ services:
   #   networks:
   #     - app-net
 
-  analytic-service:
-    build:
-      context: ./services/analyze/server
-    ports:
-      - "8088:8088"
-    depends_on:
-      - postgres
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_ANALYTIC_DB: ${POSTGRES_ANALYTIC_DB}
-      FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
-    restart: unless-stopped
-    networks:
-      - app-net
+  # analytic-service:
+  #   build:
+  #     context: ./services/analyze/server
+  #   ports:
+  #     - "8088:8088"
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     POSTGRES_USER: ${POSTGRES_USER}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  #     POSTGRES_ANALYTIC_DB: ${POSTGRES_ANALYTIC_DB}
+  #     FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
+  #   restart: unless-stopped
+  #   networks:
+  #     - app-net
 
   # diary-ai-service:
   #   build:
@@ -103,19 +105,19 @@ services:
   #   networks:
   #     - app-net
 
-  analytic-ai-service:
-    build:
-      context: ./services/analyze-ai
-    ports:
-      - "${ANALYTIC_AI_PORT:-8098}:${ANALYTIC_AI_PORT:-8098}"
-    environment:
-      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
-      LOG_LEVEL: ${LOG_LEVEL:-INFO}
-      HOST: ${AI_HOST:-0.0.0.0}
-      PORT: ${ANALYTIC_AI_PORT:-8098}
-    restart: unless-stopped
-    networks:
-      - app-net
+  # analytic-ai-service:
+  #   build:
+  #     context: ./services/analyze-ai
+  #   ports:
+  #     - "${ANALYTIC_AI_PORT:-8098}:${ANALYTIC_AI_PORT:-8098}"
+  #   environment:
+  #     GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+  #     LOG_LEVEL: ${LOG_LEVEL:-INFO}
+  #     HOST: ${AI_HOST:-0.0.0.0}
+  #     PORT: ${ANALYTIC_AI_PORT:-8098}
+  #   restart: unless-stopped
+  #   networks:
+  #     - app-net
 
 volumes:
   pgdata:
