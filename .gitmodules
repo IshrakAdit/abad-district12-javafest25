@@ -28,3 +28,6 @@
 [submodule "clients/admin-web"]
 	path = clients/admin-web
 	url = git@github.com:IshrakAdit/abad-admin-web.git
+[submodule "clients/mobile-app"]
+	path = clients/mobile-app
+	url = git@github.com:IshrakAdit/abad-mobile-app.git
