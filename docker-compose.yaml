@@ -151,6 +151,17 @@ services:
   #   networks:
   #     - app-net
 
+  # admin-web-service:
+  #   build:
+  #     context: ./clients/admin-web
+  #   ports:
+  #     - "5173:5173"
+  #   depends_on:
+  #     - alert-service
+  #   restart: unless-stopped
+  #   networks:
+  #     - app-net
+
 volumes:
   pgdata:
 
