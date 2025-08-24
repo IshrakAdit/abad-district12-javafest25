@@ -29,21 +29,21 @@ services:
   #   networks:
   #     - app-net
 
-  location-service:
-    build:
-      context: ./services/location/server
-    ports:
-      - "8082:8082"
-    depends_on:
-      - postgres
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_LOCATION_DB: ${POSTGRES_LOCATION_DB}
-      FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
-    restart: unless-stopped
-    networks:
-      - app-net
+  # location-service:
+  #   build:
+  #     context: ./services/location/server
+  #   ports:
+  #     - "8082:8082"
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     POSTGRES_USER: ${POSTGRES_USER}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  #     POSTGRES_LOCATION_DB: ${POSTGRES_LOCATION_DB}
+  #     FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
+  #   restart: unless-stopped
+  #   networks:
+  #     - app-net
 
   # alert-service:
   #   build:
@@ -77,21 +77,21 @@ services:
   #   networks:
   #     - app-net
 
-  # asst-service:
-  #   build:
-  #     context: ./services/assistant/server
-  #   ports:
-  #     - "8086:8086"
-  #   depends_on:
-  #     - postgres
-  #   environment:
-  #     POSTGRES_USER: ${POSTGRES_USER}
-  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-  #     POSTGRES_ASSISTANT_DB: ${POSTGRES_ASSISTANT_DB}
-  #     FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
-  #   restart: unless-stopped
-  #   networks:
-  #     - app-net
+  asst-service:
+    build:
+      context: ./services/assistant/server
+    ports:
+      - "8086:8086"
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_ASSISTANT_DB: ${POSTGRES_ASSISTANT_DB}
+      FIREBASE_CREDENTIAL: ${FIREBASE_CREDENTIAL}
+    restart: unless-stopped
+    networks:
+      - app-net
 
   # analytic-service:
   #   build:
@@ -123,19 +123,19 @@ services:
   #   networks:
   #     - app-net
 
-  # asst-ai-service:
-  #   build:
-  #     context: ./services/assistant-ai
-  #   ports:
-  #     - "${ASST_AI_PORT:-8096}:${ASST_AI_PORT:-8096}"
-  #   environment:
-  #     GOOGLE_API_KEY: ${GOOGLE_API_KEY}
-  #     LOG_LEVEL: ${LOG_LEVEL:-INFO}
-  #     HOST: ${AI_HOST:-0.0.0.0}
-  #     PORT: ${ASST_AI_PORT:-8096}
-  #   restart: unless-stopped
-  #   networks:
-  #     - app-net
+  asst-ai-service:
+    build:
+      context: ./services/assistant-ai
+    ports:
+      - "${ASST_AI_PORT:-8096}:${ASST_AI_PORT:-8096}"
+    environment:
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      HOST: ${AI_HOST:-0.0.0.0}
+      PORT: ${ASST_AI_PORT:-8096}
+    restart: unless-stopped
+    networks:
+      - app-net
 
   # analytic-ai-service:
   #   build:
